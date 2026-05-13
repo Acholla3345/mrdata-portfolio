@@ -9,9 +9,13 @@
 
 <body>
 
+<button id="darkModeToggle" class="dark-btn">
+🌙 Dark Mode
+</button>
+
   <!-- NAVBAR -->
   <nav class="navbar">
-    <h2>MR.DATA</h2>
+    <h2><span class="typing"></span></h2>
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -85,10 +89,21 @@
 
   <!-- CONTACT -->
   <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: yourname@email.com</p>
-    <p>Location: Kenya</p>
-  </section>
+  <h2>Contact</h2>
+
+  <form id="contactForm">
+
+    <input type="text" placeholder="Your Name" required>
+
+    <input type="email" placeholder="Your Email" required>
+
+    <textarea placeholder="Your Message"></textarea>
+
+    <button type="submit">Send Message</button>
+
+  </form>
+
+</section>
 
   <footer>
     <p>© 2026 MR.DATA | All Rights Reserved</p>
