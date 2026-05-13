@@ -1,3 +1,33 @@
+// Firebase Imports
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// YOUR FIREBASE CONFIG
+const firebaseConfig = {
+
+  apiKey: "PASTE_YOURS",
+
+  authDomain: "PASTE_YOURS",
+
+  projectId: "PASTE_YOURS",
+
+  storageBucket: "PASTE_YOURS",
+
+  messagingSenderId: "PASTE_YOURS",
+
+  appId: "PASTE_YOURS"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
 // DARK MODE
 const toggleBtn = document.getElementById("darkModeToggle");
 
@@ -22,9 +52,41 @@ window.onload = typeEffect;
 // CONTACT FORM
 document
   .getElementById("contactForm")
-  .addEventListener("submit", function(e) {
+  .addEventListener("submit", async function(e) {
 
     e.preventDefault();
 
-    alert("Message sent successfully!");
+    const name =
+      document.querySelector('input[type="text"]').value;
+
+    const email =
+      document.querySelector('input[type="email"]').value;
+
+    const message =
+      document.querySelector("textarea").value;
+
+    try {
+
+      await addDoc(collection(db, "messages"), {
+
+        name: name,
+
+        email: email,
+
+        message: message,
+
+        createdAt: new Date()
+
+      });
+
+      alert("Message sent successfully!");
+
+      document.getElementById("contactForm").reset();
+
+    } catch (error) {
+
+      alert("Error sending message");
+
+      console.error(error);
+    }
 });
