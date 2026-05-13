@@ -1,92 +1,80 @@
-// Firebase Imports
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-  getFirestore,
-  collection,
-  addDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-// YOUR FIREBASE CONFIG
+// ==========================
+// FIREBASE CONFIG (PUT YOUR VALUES)
+// ==========================
 const firebaseConfig = {
-
-  apiKey: "PASTE_YOURS",
-
-  authDomain: "PASTE_YOURS",
-
-  projectId: "PASTE_YOURS",
-
-  storageBucket: "PASTE_YOURS",
-
-  messagingSenderId: "PASTE_YOURS",
-
-  appId: "PASTE_YOURS"
+  apiKey: "PASTE_YOUR_API_KEY",
+  authDomain: "PASTE_YOUR_AUTH_DOMAIN",
+  projectId: "PASTE_YOUR_PROJECT_ID",
+  storageBucket: "PASTE_YOUR_STORAGE_BUCKET",
+  messagingSenderId: "PASTE_YOUR_SENDER_ID",
+  appId: "PASTE_YOUR_APP_ID"
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-const db = getFirestore(app);
 
+// ==========================
 // DARK MODE
+// ==========================
 const toggleBtn = document.getElementById("darkModeToggle");
 
-toggleBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-});
+if (toggleBtn) {
+  toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+  });
+}
 
+
+// ==========================
 // TYPING EFFECT
+// ==========================
 const text = "MR.DATA";
-let index = 0;
+let i = 0;
 
 function typeEffect() {
-  if (index < text.length) {
-    document.querySelector(".typing").innerHTML += text.charAt(index);
-    index++;
+  const el = document.querySelector(".typing");
+  if (!el) return;
+
+  if (i < text.length) {
+    el.innerHTML += text.charAt(i);
+    i++;
     setTimeout(typeEffect, 200);
   }
 }
 
-window.onload = typeEffect;
+window.addEventListener("load", typeEffect);
 
-// CONTACT FORM
-document
-  .getElementById("contactForm")
-  .addEventListener("submit", async function(e) {
 
+// ==========================
+// CONTACT FORM (FIREBASE)
+// ==========================
+const form = document.getElementById("contactForm");
+
+if (form) {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const name =
-      document.querySelector('input[type="text"]').value;
-
-    const email =
-      document.querySelector('input[type="email"]').value;
-
-    const message =
-      document.querySelector("textarea").value;
+    const name = form.querySelector('input[type="text"]').value;
+    const email = form.querySelector('input[type="email"]').value;
+    const message = form.querySelector("textarea").value;
 
     try {
-
-      await addDoc(collection(db, "messages"), {
-
+      await db.collection("messages").add({
         name: name,
-
         email: email,
-
         message: message,
-
         createdAt: new Date()
-
       });
 
-      alert("Message sent successfully!");
+      alert("Message sent successfully ✅");
 
-      document.getElementById("contactForm").reset();
+      form.reset();
 
     } catch (error) {
-
-      alert("Error sending message");
-
-      console.error(error);
+      console.error("Firebase Error:", error);
+      alert("Message failed ❌ Check Firebase setup");
     }
-});
+  });
+}
