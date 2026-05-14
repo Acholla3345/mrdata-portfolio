@@ -3,81 +3,80 @@ body {
   font-family: Arial, sans-serif;
   background: #f4f6f8;
   color: #222;
+  transition: 0.3s;
 }
 
-/* NAVBAR */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 40px;
-  background: #0d47a1;
-  color: white;
-  position: sticky;
-  top: 0;
+/* DARK MODE */
+.dark-mode {
+  background: #121212;
+  color: #fff;
 }
 
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 15px;
-}
-
-.navbar a {
-  color: white;
-  text-decoration: none;
+.dark-mode .card {
+  background: #1e1e1e;
+  color: #fff;
 }
 
 /* HERO */
 .hero {
-  background: linear-gradient(to right, #0d47a1, #1976d2);
-  color: white;
   text-align: center;
-  padding: 80px 20px;
+  padding: 60px 20px;
+  background: #0d47a1;
+  color: white;
 }
 
 .profile-img {
+  width: 150px;
   border-radius: 50%;
-  margin-bottom: 15px;
 }
 
-.buttons {
-  margin-top: 15px;
-}
-
+/* BUTTONS */
 .btn {
   display: inline-block;
   padding: 10px 15px;
-  margin: 5px;
   background: white;
   color: #0d47a1;
   text-decoration: none;
-  font-weight: bold;
+  margin-top: 10px;
   border-radius: 5px;
+  font-weight: bold;
 }
 
-.whatsapp {
-  background: #25D366;
+/* DARK BUTTON */
+.dark-btn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background: #222;
   color: white;
+  border-radius: 5px;
+  z-index: 1000;
 }
 
 /* SECTIONS */
 section {
-  padding: 50px;
+  padding: 40px;
   text-align: center;
 }
 
+/* CARDS */
+.card {
+  background: white;
+  padding: 15px;
+  margin: 10px auto;
+  width: 60%;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 10px;
-}
-
-.card {
-  background: white;
-  padding: 15px;
-  margin: 10px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 /* FOOTER */
@@ -85,62 +84,5 @@ footer {
   background: #222;
   color: white;
   text-align: center;
-  padding: 15px;
-}/* DARK MODE BUTTON */
-.dark-btn {
-  position: fixed;
-  top: 15px;
-  right: 20px;
   padding: 10px;
-  border: none;
-  background: #222;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
-  z-index: 1000;
-}
-
-/* DARK MODE */
-.dark-mode {
-  background: #121212;
-  color: white;
-}
-
-.dark-mode .card {
-  background: #1e1e1e;
-  color: white;
-}
-
-.dark-mode section {
-  background: #121212;
-  color: white;
-}
-
-/* TYPING EFFECT */
-.typing {
-  border-right: 3px solid white;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-/* CONTACT FORM */
-form {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  margin: auto;
-}
-
-input,
-textarea {
-  margin: 10px 0;
-  padding: 10px;
-}
-
-form button {
-  padding: 10px;
-  background: #0d47a1;
-  color: white;
-  border: none;
-  cursor: pointer;
 }
